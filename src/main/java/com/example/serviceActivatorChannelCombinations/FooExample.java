@@ -9,7 +9,9 @@ import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.channel.PublishSubscribeChannel;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.GenericMessage;
-
+/*
+   Message--->DirectChannel---->ServiceActivator---->PublishSubscribeChannel--->ServiceActivator
+ */
 @SpringBootApplication
 public class FooExample {
 

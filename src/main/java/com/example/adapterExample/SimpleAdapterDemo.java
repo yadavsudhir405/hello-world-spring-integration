@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by sudhiry on 1/19/18.
- * About resulat
+ *  Message--->QueueChannel----->InboundAdapter----->DirectChannel---->ServiceActivator
  */
 @SpringBootApplication
 public class SimpleAdapterDemo {
