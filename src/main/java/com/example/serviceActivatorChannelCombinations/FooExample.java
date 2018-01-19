@@ -1,4 +1,4 @@
-package com.example.com.example.channel.serviceActivatorCombination;
+package com.example.serviceActivatorChannelCombinations;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

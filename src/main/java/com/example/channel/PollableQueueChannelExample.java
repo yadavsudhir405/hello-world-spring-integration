@@ -1,19 +1,12 @@
-package com.example.demo;
+package com.example.channel;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.integration.channel.PublishSubscribeChannel;
 import org.springframework.integration.channel.QueueChannel;
-import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.PollableChannel;
 import org.springframework.messaging.support.GenericMessage;
-
-import java.util.Arrays;
-import java.util.stream.Stream;
 
 @SpringBootApplication
 public class PollableQueueChannelExample {
