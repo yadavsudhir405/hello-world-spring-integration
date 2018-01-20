@@ -33,12 +33,7 @@ public class FooExample {
                 .transform(m->{
 		             return m.toString().concat("--->ServiceActivator1----->");
                         })
-                .channel("channel2")
-                .handle(message -> {
-                    System.out.println("PublishSubscribe Channel---->"+message.getPayload());
-                })
-                .get();
-
+                .channel("channel3").get();
 	}
 	@Bean
 	public DirectChannel channel123(){
@@ -49,6 +44,16 @@ public class FooExample {
 	public PublishSubscribeChannel channel2(){
 		return new PublishSubscribeChannel();
 	}
+
+	@Bean
+    public PollableChannel channel3(){
+	    return new QueueChannel();
+    }
+
+    @ServiceActivator(inputChannel = "channel3")
+    public void handleMessage(Message<String> message){
+        System.out.println(message.getPayload());
+    }
 
 
 }
