@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.integration.annotation.Poller;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.channel.PublishSubscribeChannel;
@@ -13,6 +14,7 @@ import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.PollableChannel;
 import org.springframework.messaging.support.GenericMessage;
+import org.springframework.stereotype.Component;
 
 /*
    Message--->DirectChannel---->ServiceActivator---->PublishSubscribeChannel--->ServiceActivator
@@ -33,7 +35,8 @@ public class FooExample {
                 .transform(m->{
 		             return m.toString().concat("--->ServiceActivator1----->");
                         })
-                .channel("channel3").get();
+                .channel("channel3")
+                .get();
 	}
 	@Bean
 	public DirectChannel channel123(){
@@ -50,10 +53,13 @@ public class FooExample {
 	    return new QueueChannel();
     }
 
-    @ServiceActivator(inputChannel = "channel3")
+    @ServiceActivator(inputChannel = "channel3",poller = @Poller(fixedDelay = "1000"))
     public void handleMessage(Message<String> message){
-        System.out.println(message.getPayload());
+        System.out.println("**********"+ message.getPayload());
     }
+
+
+
 
 
 }
