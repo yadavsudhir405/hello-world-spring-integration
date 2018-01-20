@@ -22,16 +22,20 @@ public class FooExample {
 		ApplicationContext ctx = SpringApplication.run(FooExample.class, args);
 
 		DirectChannel messageChannel = ctx.getBean("channel123", DirectChannel.class);
-		messageChannel.send(new GenericMessage<Object>("world"));
+		messageChannel.send(new GenericMessage<Object>("Hello world"));
 	}
 
 	@Bean
 	public IntegrationFlow integrationFlow(){
 		return IntegrationFlows.from("channel123")
-								.filter("world"::equals)
-								.transform("Hello "::concat)
-								.handle(message -> {System.out.println(message.getPayload());})
-								.get();
+                .transform(m->{
+		             return m.toString().concat("--->ServiceActivator1----->");
+                        })
+                .channel("channel2")
+                .handle(message -> {
+                    System.out.println("PublishSubscribe Channel---->"+message.getPayload());
+                })
+                .get();
 
 	}
 	@Bean
