@@ -7,9 +7,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.channel.PublishSubscribeChannel;
+import org.springframework.integration.channel.QueueChannel;
 import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.messaging.Message;
+import org.springframework.messaging.PollableChannel;
 import org.springframework.messaging.support.GenericMessage;
 
 /*
@@ -48,14 +50,5 @@ public class FooExample {
 		return new PublishSubscribeChannel();
 	}
 
-//	@ServiceActivator(inputChannel = "channel123", outputChannel = "channel2")
-//	public String consumeMessage1(Message<String> message){
-//		return message.getPayload()+"ServiceActivator1-->";
-//	}
-
-//	@ServiceActivator(inputChannel = "channel2")
-//	public void consumeMessage2(Message<String> message){
-//		System.out.println(message.getPayload()+" ServiceActivator2");
-//	}
 
 }
